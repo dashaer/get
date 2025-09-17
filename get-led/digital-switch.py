@@ -12,4 +12,4 @@ while True:
         state= not state
         print(state)
         GPIO.output(led,state)
-        time.sleep=0.5
+        time.sleep(0.2)
