@@ -45,4 +45,5 @@ while True:
             time.sleep(sleepTime)
 
         for i in range(8):
-            GPIO.output(leds[i],Bn[i])
+            GPIO.output(leds[i],Bn[i])     
+        
