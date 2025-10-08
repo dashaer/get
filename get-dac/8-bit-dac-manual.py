@@ -20,7 +20,7 @@ def NumberToDac(num):
         GPIO.output(pins[i],int(num_bin[i]))
     print(num_bin)
 
-    return 1v
+    return 1
 
 try: 
     while True:
