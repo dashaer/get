@@ -1,0 +1,20 @@
+import smbus 
+
+class MCP3021:
+    def __init__(self,dynamic_range,verbose=False):
+        self.bus = smbus.SMBus(1)
+        self.dynamic_range = dynamic_range
+        self.address=0x4D
+        self.verbose = verbose
+
+    def deinit(self):
+        self.bus.close()
+
+    def get_number(self):
+        data = self.dus.read_word_data(self.address, 0)
+        lower_data_byte=data >>8
+        upper_data_byte = data & 0xFF
+        number = (upper_data_byte << 6) | (lower_data_byte)
+        if self.verbose:
+            print(f"принятые данные: {data}, Старший байт: {upper_data_byte:x}, младший байт: {lower_data_byte:x},число:{number}")
+            return number
