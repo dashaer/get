@@ -20,3 +20,4 @@ while time.time()-time_start < duration:
 print(time_values)
 print(voltage_values)
 adc_plot.plot_voltage_vs_time(time_values, voltage_values, dynamic_range)
+adc_plot.plot_sampling_period_hist(time_values)

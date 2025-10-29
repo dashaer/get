@@ -36,6 +36,26 @@ class R2R_ADC:
         # print((voltage_bin/255)*self.dynamic_range)
         return((voltage_bin/255)*self.dynamic_range)
 
+    def successive_approximator_adc(self):
+        n=255//2
+        # p=n
+        dn=n
+        while dn>0:
+            self.number_to_dac(n)
+            time.sleep(self.compare_time)
+            if GPIO.input(self.comp_gpio)==1:
+                # p=n
+                n-=dn//2
+                dn//=2
+            else:
+                n+=dn//2
+                dn//=2
+        return n
+
+    def get_sar_voltage(self):
+        n=self.successive_approximator_adc()
+        return (n/255)*self.dynamic_range
+
 
 if __name__ == "__main__":
     try:
@@ -43,7 +63,8 @@ if __name__ == "__main__":
         while True:
             try:
                 # dac.set_voltage(voltage)
-                dac.sequential_counting_adc()
+                V=dac.sequential_counting_adc()
+                print(V)
 
             except ValueError:
                 print("error")
