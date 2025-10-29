@@ -63,7 +63,9 @@ if __name__ == "__main__":
         while True:
             try:
                 # dac.set_voltage(voltage)
-                V=dac.sequential_counting_adc()
+                # V=dac.sequential_counting_adc()
+                # print(V)
+                V=dac.get_sar_voltage()
                 print(V)
 
             except ValueError:
